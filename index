@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="https://img2.gratispng.com/20180425/csq/kisspng-tupperware-brands-company-pitcher-copy-5ae06cb023ecd2.8337702915246573281472.jpg" type="image/x-icon">
+  <title>Sorteio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    h1 {
+      color: #333333;
+    }
+    
+    .input-group {
+      margin-bottom: 10px;
+    }
+    
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #666666;
+    }
+    
+    .input-group input {
+      width: 96%;
+      padding: 8px;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+    }
+    
+    .button {
+      background-color: #da2db4;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    
+    .winner {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+   
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sorteio</h1>
+    <div class="input-group">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" placeholder="Digite o nome">
+    </div>
+    <button class="button" onclick="adicionarNome()">Adicionar</button>
+    <div id="nomes"></div><br>
+    <button class="button" onclick="sortearNome()">Sortear</button>
+    <div id="resultado" class="winner"></div>
+  </div>
+
+  <script>
+    var nomesArray = [];
+
+    function adicionarNome() {
+      var inputNome = document.getElementById("name");
+      var nome = inputNome.value.trim();
+      
+      if (nome !== "") {
+        nomesArray.push(nome);
+        inputNome.value = "";
+        mostrarNomes();
+      }
+    }
+
+    function mostrarNomes() {
+      var nomesDiv = document.getElementById("nomes");
+      nomesDiv.innerHTML = "";
+      
+      for (var i = 0; i < nomesArray.length; i++) {
+        var nome = nomesArray[i];
+        var nomeElement = document.createElement("p");
+        nomeElement.innerText = nome;
+        nomesDiv.appendChild(nomeElement);
+      }
+    }
+
+    function sortearNome() {
+      var resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerHTML = "";
+      
+      if (nomesArray.length > 0) {
+        var indiceSorteado = Math.floor(Math.random() * nomesArray.length);
+        var nomeSorteado = nomesArray[indiceSorteado];
+        resultadoDiv.innerText = "Sortudo da Vez: " + nomeSorteado;
+    } else {
+    resultadoDiv.innerText = "Nenhum nome adicionado.";
+  }
+}
+</script>
+</body>
+</html>
